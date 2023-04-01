@@ -13,6 +13,12 @@ function writePassword() {
   var passwordLength = prompt(
     "Please enter how long you would like password to be.\n\nYou must enter the value between 8 and 128."
   );
+  passwordLength = parseInt(passwordLength);
+
+  if (passwordLength < 8 || passwordLength > 128) {
+    alert("Invalid password length");
+    return;
+  }
 
   console.log(useNumbers);
   var password = generatePassword(
@@ -37,13 +43,28 @@ function generatePassword(
 ) {
   var password = "";
 
-  var passwordCharacterPool =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "abcdefghijklmnopqrstuvwxyz0123456789@#$";
+  var passwordCharacterPool = "";
 
-  for (let i = 1; i <= 8; i++) {
-    var char = Math.floor(Math.random() * str.length + 1);
+  if (useNumbers) {
+    passwordCharacterPool += "0123456789";
+  }
 
-    password += str.charAt(char);
+  if (useLowerCase) {
+    passwordCharacterPool += "abcdefghijklmnopqrstuvwxyz";
+  }
+
+  if (useUpperCase) {
+    passwordCharacterPool += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  }
+
+  if (useSpecialCharacter) {
+    passwordCharacterPool += "@#$";
+  }
+
+  for (let i = 1; i <= passwordLength; i++) {
+    var char = Math.floor(Math.random() * passwordCharacterPool.length + 1);
+
+    password += passwordCharacterPool.charAt(char);
   }
 
   return password;
