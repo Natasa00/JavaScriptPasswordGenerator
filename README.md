@@ -2,6 +2,10 @@
 
 JavaScript responsive user interface that generates random passwords
 
+## Deployment Link
+
+https://natasa00.github.io/JavaScriptPasswordGenerator/
+
 ## Technologies used for this project
 
 - JavaScript
