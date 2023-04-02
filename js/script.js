@@ -10,6 +10,16 @@ function writePassword() {
     "Would you like to include special character?"
   );
 
+  if (
+    useNumbers === false &&
+    useLowerCase === false &&
+    useUpperCase === false &&
+    useSpecialCharacter === false
+  ) {
+    alert("You must select at least one character type");
+    return;
+  }
+
   var passwordLength = prompt(
     "Please enter how long you would like password to be.\n\nYou must enter the value between 8 and 128."
   );
@@ -20,7 +30,6 @@ function writePassword() {
     return;
   }
 
-  console.log(useNumbers);
   var password = generatePassword(
     useNumbers,
     useLowerCase,
@@ -62,8 +71,7 @@ function generatePassword(
   }
 
   for (let i = 1; i <= passwordLength; i++) {
-    var char = Math.floor(Math.random() * passwordCharacterPool.length + 1);
-
+    var char = Math.floor(Math.random() * passwordCharacterPool.length);
     password += passwordCharacterPool.charAt(char);
   }
 
